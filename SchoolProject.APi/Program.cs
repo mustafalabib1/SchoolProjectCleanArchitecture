@@ -1,9 +1,11 @@
 
 using Microsoft.EntityFrameworkCore;
+using SchoolProject.Core;
 using SchoolProject.Infrastructure;
 using SchoolProject.Infrastructure.Context;
 using SchoolProject.Infrastructure.Implmention;
 using SchoolProject.Infrastructure.Interface;
+using SchoolProject.Service;
 
 namespace SchoolProject.APi
 {
@@ -21,7 +23,11 @@ namespace SchoolProject.APi
             });
             #endregion
 
-            builder.Services.AddfrastructureDependencies();
+            #region Dependancies injection 
+            builder.Services.AddfrastructureDependencies()
+                .AddServiceDependencies()
+                .AddCoreDependencies();
+            #endregion
 
             builder.Services.AddControllers();
             // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

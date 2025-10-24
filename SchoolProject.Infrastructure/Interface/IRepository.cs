@@ -11,15 +11,14 @@ namespace SchoolProject.Infrastructure.Interface
 {
     public interface IRepository<T> where T : BaseEntity
     {
-        Task<IEnumerable<T>> GetAllAsync();
-        Task<T> GetByIdAsync(Guid id);
-        Task AddAsync(T entity);
-        Task UpdateAsync(T entity);
-        Task DeleteAsync(Guid id);
-        Task<IQueryable<T>> Find(Expression<Func<T, bool>> filter);
-
-        Task<T> GetEntityWithSpec(ISpecification<T> spec);
-        Task<IEnumerable<T>> GetAllWithSpec(ISpecification<T> spec);
+        public Task<IEnumerable<T>> GetAllAsync();
+        public Task<T?> GetByIdAsync(Guid id);
+        public Task AddAsync(T entity);
+        public Task UpdateAsync(T entity);
+        public Task DeleteAsync(Guid id);
+        public Task<IQueryable<T>> Find(Expression<Func<T, bool>> filter); 
+        public Task<T> GetEntityWithSpec(ISpecification<T> spec);
+        public Task<IEnumerable<T>> GetAllWithSpec(ISpecification<T> spec);
     }
 
 }

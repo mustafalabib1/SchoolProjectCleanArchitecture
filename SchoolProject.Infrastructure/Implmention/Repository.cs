@@ -15,13 +15,13 @@ namespace SchoolProject.Infrastructure.Implmention
     public class Repository<T>(ApplicationDBContext dBContext) : IRepository<T> where T : BaseEntity
     {
         // Adds a new entity to the database
-        async Task IRepository<T>.AddAsync(T entity)
+        public async Task AddAsync(T entity)
         {
             await dBContext.Set<T>().AddAsync(entity);
         }
 
         // Finds an entity by its ID, removes it.
-        async Task IRepository<T>.DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
             var entity = await dBContext.Set<T>().FindAsync(id);
             if (entity != null)
@@ -32,22 +32,23 @@ namespace SchoolProject.Infrastructure.Implmention
         }
 
         // Retrieves all entities of type T from the database
-        async Task<IEnumerable<T>> IRepository<T>.GetAllAsync()
+        public async Task<IEnumerable<T>> GetAllAsync()
         {
             return await dBContext.Set<T>().AsNoTracking().ToListAsync();
         }
 
         // Finds a single entity by its primary key (ID)
-        async Task<T> IRepository<T>.GetByIdAsync(Guid id)
+        public async Task<T?> GetByIdAsync(Guid id)
         {
             // FindAsync is optimized for finding by primary key
             return await dBContext.Set<T>().FindAsync(id);
         }
 
-        // Attaches an entity, marks it as modified.
-        async Task IRepository<T>.UpdateAsync(T entity)
+        // Fix for CS1998: Remove 'async' keyword since there is no 'await' in the method.
+        public Task UpdateAsync(T entity)
         {
             dBContext.Set<T>().Update(entity);
+            return Task.CompletedTask;
         }
 
         public async Task<IQueryable<T>> Find(Expression<Func<T, bool>> filter)
