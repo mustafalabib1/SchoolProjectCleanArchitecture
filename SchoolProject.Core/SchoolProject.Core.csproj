@@ -1,0 +1,31 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SchoolProject.Service\SchoolProject.Service.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Features\Subject\Commands\Handler\" />
+    <Folder Include="Features\Subject\Commands\Models\" />
+    <Folder Include="Features\Subject\Commands\vaildtior\" />
+    <Folder Include="Features\Subject\Quieres\Handler\" />
+    <Folder Include="Features\Subject\Quieres\Models\" />
+    <Folder Include="Features\Department\Commands\Handler\" />
+    <Folder Include="Features\Department\Commands\Models\" />
+    <Folder Include="Features\Department\Commands\vaildtior\" />
+    <Folder Include="Features\Department\Quieres\Handler\" />
+    <Folder Include="Features\Department\Quieres\Models\" />
+    <Folder Include="Features\Student\Commands\Handler\" />
+    <Folder Include="Features\Student\Commands\Models\" />
+    <Folder Include="Features\Student\Commands\vaildtior\" />
+    <Folder Include="Features\Student\Quieres\Handler\" />
+    <Folder Include="Features\Student\Quieres\Models\" />
+  </ItemGroup>
+
+</Project>
