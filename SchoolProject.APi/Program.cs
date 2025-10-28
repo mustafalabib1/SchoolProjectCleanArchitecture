@@ -1,6 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using SchoolProject.Core;
+using SchoolProject.Data.APPMetaData;
 using SchoolProject.Infrastructure;
 using SchoolProject.Infrastructure.Context;
 using SchoolProject.Infrastructure.Implmention;

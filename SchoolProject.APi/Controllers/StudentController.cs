@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SchoolProject.Core.Features.Student.Quieres.Models;
 using SchoolProject.Core.Features.Student.Quieres.Models;
+using SchoolProject.Data.APPMetaData;
 using System.Threading.Tasks;
 
 namespace SchoolProject.API.Controllers
@@ -10,15 +11,15 @@ namespace SchoolProject.API.Controllers
     [ApiController]
     public class StudentController(IMediator mediator) : ControllerBase
     {
-        [HttpGet("{id}")]
-        // GET /api/Student/123e4567-e89b-12d3-a456-426614174000
+        [HttpGet(Router.StudentRouting.GetById)]
+        // GET /api/v1/Student/123e4567-e89b-12d3-a456-426614174000
         public async Task<IActionResult> GetStudentById(Guid id)
         {
             var response = await mediator.Send(new GetStudentByIdQuiery(id));
             return StatusCode((int)response.StatusCode, response);
         }
 
-        [HttpGet]
+        [HttpGet(Router.StudentRouting.List)]
         public async Task<IActionResult> GetAllStudents()
         {
             var response = await mediator.Send(new GetAllSutdentsQuiery());
