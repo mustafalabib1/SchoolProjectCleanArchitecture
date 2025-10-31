@@ -1,5 +1,6 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Mvc;
+using SchoolProject.Core.Features.Student.Commands.Models;
 using SchoolProject.Core.Features.Student.Quieres.Models;
 using SchoolProject.Core.Features.Student.Quieres.Models;
 using SchoolProject.Data.APPMetaData;
@@ -24,6 +25,28 @@ namespace SchoolProject.API.Controllers
         {
             var response = await mediator.Send(new GetAllSutdentsQuiery());
             return StatusCode((int)response.StatusCode, response);
+        }
+        [HttpPost(Router.StudentRouting.Create)]
+        public async Task<IActionResult> CreateStudent([FromBody] CreateStudentCommand command)
+        {
+            var response = await mediator.Send(command);
+            return StatusCode((int)response.StatusCode, response);
+        }
+        [HttpPost("upload")]
+        public async Task<IActionResult> Upload(IFormFile file)
+        {
+            if (file == null || file.Length == 0)
+                return BadRequest("Please upload a valid file.");
+
+            var filePath = Path.Combine("Uploads", file.FileName);
+            Directory.CreateDirectory("Uploads");
+
+            using (var stream = new FileStream(filePath, FileMode.Create))
+            {
+                await file.CopyToAsync(stream);
+            }
+
+            return Ok(new { filePath });
         }
     }
 }

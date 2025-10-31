@@ -18,7 +18,7 @@ namespace SchoolProject.Data.Entites
         [StringLength(20)]
         public string PhoneNumber { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public Department Department { get; set; }
+        public Department? Department { get; set; }
         public ICollection<Subject> Subjects { get; set; } = new HashSet<Subject>();
     }
 }

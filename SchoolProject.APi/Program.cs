@@ -1,5 +1,6 @@
 
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.FileProviders;
 using SchoolProject.Core;
 using SchoolProject.Data.APPMetaData;
 using SchoolProject.Infrastructure;
@@ -17,6 +18,17 @@ namespace SchoolProject.APi
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
+
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
+
             #region DBContext
             builder.Services.AddDbContext<ApplicationDBContext>(options =>
             {
@@ -37,6 +49,8 @@ namespace SchoolProject.APi
 
             var app = builder.Build();
 
+            app.UseCors("AllowAll");  
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
@@ -48,8 +62,13 @@ namespace SchoolProject.APi
 
             app.UseAuthorization();
 
-
             app.MapControllers();
+            app.UseStaticFiles();
+            app.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider =new PhysicalFileProvider(Path.Combine(Directory.GetCurrentDirectory(), "Uploads")),
+                RequestPath = "/Uploads"
+            });
 
             app.Run();
         }

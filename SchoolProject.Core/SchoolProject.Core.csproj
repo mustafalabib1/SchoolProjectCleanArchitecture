@@ -21,15 +21,13 @@
     <Folder Include="Features\Department\Commands\Validation\" />
     <Folder Include="Features\Department\Quieres\Handler\" />
     <Folder Include="Features\Department\Quieres\Models\" />
-    <Folder Include="Features\Student\Commands\Handler\" />
-    <Folder Include="Features\Student\Commands\Models\" />
     <Folder Include="Features\Student\Commands\Validation\" />
-    <Folder Include="Mapping\CommandMapping\" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="AutoMapper" Version="15.0.1" />
     <PackageReference Include="MediatR" Version="13.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
   </ItemGroup>
 
 </Project>
