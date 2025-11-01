@@ -1,6 +1,7 @@
 
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.FileProviders;
+using SchoolProject.API;
 using SchoolProject.Core;
 using SchoolProject.Data.APPMetaData;
 using SchoolProject.Infrastructure;
@@ -39,7 +40,8 @@ namespace SchoolProject.APi
             #region Dependancies injection 
             builder.Services.AddfrastructureDependencies()
                 .AddServiceDependencies()
-                .AddCoreDependencies();
+                .AddCoreDependencies()
+                .AddAPIDependencies();
             #endregion
 
             builder.Services.AddControllers();
